@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adder/adder.dart';
-import 'package:scrap/scrap.dart';
+import 'dart:ffi';
+import 'package:ffi/ffi.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,16 +26,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  Scrap scrap;
+  String _counter = "";
   Adder adder;
 
   @override
   void initState() {
     super.initState();
     adder = Adder();
-    scrap = Scrap();
-    Scrap.setup();
   }
 
   @override
@@ -48,23 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'You have pushed the button this many times:',
+              '生成助记词:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
             const SizedBox(height: 100),
-            RaisedButton(
-              color: Colors.greenAccent,
-              child: Text(
-                'Scrape rust-lang.org',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              onPressed: _showWebPage,
-            )
           ],
         ),
       ),
@@ -78,19 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      _counter = adder.add(_counter, 1);
+      // _counter = adder.add(_counter, 1);
+      print(adder.get());
+      final ptrResult = adder.word();
+
+      // Cast the result pointer to a Dart string
+      final result = Utf8.fromUtf8(ptrResult.cast<Utf8>());
+      _counter = result;
+      print(result);
+
+      final address = adder.private_address("equip will roof matter pink blind book anxiety banner elbow sun young", "123456");
+      print(Utf8.fromUtf8(address.cast<Utf8>()));
     });
   }
 
-  void _showWebPage() async {
-    final html = await scrap.loadPage('https://www.rust-lang.org/');
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      isDismissible: true,
-      builder: (context) => SingleChildScrollView(
-        child: Text(html),
-      ),
-    );
-  }
 }
