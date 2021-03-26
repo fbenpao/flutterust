@@ -312,6 +312,7 @@ class KeystoreCommonDeriveParam_Derivation extends $pb.GeneratedMessage {
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'network')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'segWit', protoName: 'segWit')
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chainId', protoName: 'chainId')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'curve')
     ..hasRequiredFields = false
   ;
 
@@ -322,6 +323,7 @@ class KeystoreCommonDeriveParam_Derivation extends $pb.GeneratedMessage {
     $core.String network,
     $core.String segWit,
     $core.String chainId,
+    $core.String curve,
   }) {
     final _result = create();
     if (chainType != null) {
@@ -338,6 +340,9 @@ class KeystoreCommonDeriveParam_Derivation extends $pb.GeneratedMessage {
     }
     if (chainId != null) {
       _result.chainId = chainId;
+    }
+    if (curve != null) {
+      _result.curve = curve;
     }
     return _result;
   }
@@ -406,6 +411,15 @@ class KeystoreCommonDeriveParam_Derivation extends $pb.GeneratedMessage {
   $core.bool hasChainId() => $_has(4);
   @$pb.TagNumber(5)
   void clearChainId() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get curve => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set curve($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasCurve() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCurve() => clearField(6);
 }
 
 class KeystoreCommonDeriveParam extends $pb.GeneratedMessage {
@@ -686,7 +700,10 @@ class PrivateKeyStoreImportParam extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PrivateKeyStoreImportParam', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'api'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'privateKey', protoName: 'privateKey')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'password')
-    ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'overwrite')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'passwordHint', protoName: 'passwordHint')
+    ..aOB(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'overwrite')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'encoding')
     ..hasRequiredFields = false
   ;
 
@@ -694,7 +711,10 @@ class PrivateKeyStoreImportParam extends $pb.GeneratedMessage {
   factory PrivateKeyStoreImportParam({
     $core.String privateKey,
     $core.String password,
+    $core.String name,
+    $core.String passwordHint,
     $core.bool overwrite,
+    $core.String encoding,
   }) {
     final _result = create();
     if (privateKey != null) {
@@ -703,8 +723,17 @@ class PrivateKeyStoreImportParam extends $pb.GeneratedMessage {
     if (password != null) {
       _result.password = password;
     }
+    if (name != null) {
+      _result.name = name;
+    }
+    if (passwordHint != null) {
+      _result.passwordHint = passwordHint;
+    }
     if (overwrite != null) {
       _result.overwrite = overwrite;
+    }
+    if (encoding != null) {
+      _result.encoding = encoding;
     }
     return _result;
   }
@@ -748,13 +777,40 @@ class PrivateKeyStoreImportParam extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.bool get overwrite => $_getBF(2);
+  $core.String get name => $_getSZ(2);
   @$pb.TagNumber(3)
-  set overwrite($core.bool v) { $_setBool(2, v); }
+  set name($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasOverwrite() => $_has(2);
+  $core.bool hasName() => $_has(2);
   @$pb.TagNumber(3)
-  void clearOverwrite() => clearField(3);
+  void clearName() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get passwordHint => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set passwordHint($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasPasswordHint() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPasswordHint() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.bool get overwrite => $_getBF(4);
+  @$pb.TagNumber(5)
+  set overwrite($core.bool v) { $_setBool(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasOverwrite() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearOverwrite() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get encoding => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set encoding($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasEncoding() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearEncoding() => clearField(6);
 }
 
 class PrivateKeyStoreExportParam extends $pb.GeneratedMessage {
@@ -850,6 +906,7 @@ class KeystoreCommonExistsParam extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'KeystoreCommonExistsParam', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'api'), createEmptyInstance: create)
     ..e<KeyType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: KeyType.MNEMONIC, valueOf: KeyType.valueOf, enumValues: KeyType.values)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'value')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'encoding')
     ..hasRequiredFields = false
   ;
 
@@ -857,6 +914,7 @@ class KeystoreCommonExistsParam extends $pb.GeneratedMessage {
   factory KeystoreCommonExistsParam({
     KeyType type,
     $core.String value,
+    $core.String encoding,
   }) {
     final _result = create();
     if (type != null) {
@@ -864,6 +922,9 @@ class KeystoreCommonExistsParam extends $pb.GeneratedMessage {
     }
     if (value != null) {
       _result.value = value;
+    }
+    if (encoding != null) {
+      _result.encoding = encoding;
     }
     return _result;
   }
@@ -905,6 +966,15 @@ class KeystoreCommonExistsParam extends $pb.GeneratedMessage {
   $core.bool hasValue() => $_has(1);
   @$pb.TagNumber(2)
   void clearValue() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get encoding => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set encoding($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasEncoding() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearEncoding() => clearField(3);
 }
 
 class KeystoreCommonExistsResult extends $pb.GeneratedMessage {
@@ -1632,5 +1702,169 @@ class HdStoreExtendedPublicKeyResponse extends $pb.GeneratedMessage {
   $core.bool hasExtendedPublicKey() => $_has(0);
   @$pb.TagNumber(1)
   void clearExtendedPublicKey() => clearField(1);
+}
+
+class PublicKeyParam extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PublicKeyParam', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'api'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chainType', protoName: 'chainType')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'address')
+    ..hasRequiredFields = false
+  ;
+
+  PublicKeyParam._() : super();
+  factory PublicKeyParam({
+    $core.String id,
+    $core.String chainType,
+    $core.String address,
+  }) {
+    final _result = create();
+    if (id != null) {
+      _result.id = id;
+    }
+    if (chainType != null) {
+      _result.chainType = chainType;
+    }
+    if (address != null) {
+      _result.address = address;
+    }
+    return _result;
+  }
+  factory PublicKeyParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PublicKeyParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PublicKeyParam clone() => PublicKeyParam()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PublicKeyParam copyWith(void Function(PublicKeyParam) updates) => super.copyWith((message) => updates(message as PublicKeyParam)) as PublicKeyParam; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static PublicKeyParam create() => PublicKeyParam._();
+  PublicKeyParam createEmptyInstance() => create();
+  static $pb.PbList<PublicKeyParam> createRepeated() => $pb.PbList<PublicKeyParam>();
+  @$core.pragma('dart2js:noInline')
+  static PublicKeyParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PublicKeyParam>(create);
+  static PublicKeyParam _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get chainType => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set chainType($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasChainType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearChainType() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get address => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set address($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasAddress() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAddress() => clearField(3);
+}
+
+class PublicKeyResult extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PublicKeyResult', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'api'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
+    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'chainType', protoName: 'chainType')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'address')
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'publicKey', protoName: 'publicKey')
+    ..hasRequiredFields = false
+  ;
+
+  PublicKeyResult._() : super();
+  factory PublicKeyResult({
+    $core.String id,
+    $core.String chainType,
+    $core.String address,
+    $core.String publicKey,
+  }) {
+    final _result = create();
+    if (id != null) {
+      _result.id = id;
+    }
+    if (chainType != null) {
+      _result.chainType = chainType;
+    }
+    if (address != null) {
+      _result.address = address;
+    }
+    if (publicKey != null) {
+      _result.publicKey = publicKey;
+    }
+    return _result;
+  }
+  factory PublicKeyResult.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PublicKeyResult.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PublicKeyResult clone() => PublicKeyResult()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PublicKeyResult copyWith(void Function(PublicKeyResult) updates) => super.copyWith((message) => updates(message as PublicKeyResult)) as PublicKeyResult; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static PublicKeyResult create() => PublicKeyResult._();
+  PublicKeyResult createEmptyInstance() => create();
+  static $pb.PbList<PublicKeyResult> createRepeated() => $pb.PbList<PublicKeyResult>();
+  @$core.pragma('dart2js:noInline')
+  static PublicKeyResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PublicKeyResult>(create);
+  static PublicKeyResult _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get chainType => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set chainType($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasChainType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearChainType() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get address => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set address($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasAddress() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAddress() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get publicKey => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set publicKey($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasPublicKey() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearPublicKey() => clearField(4);
 }
 

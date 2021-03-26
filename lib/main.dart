@@ -121,19 +121,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      scanDirectory().then((value) => print(value));
-      WalletKeyParam walletKeyParam = new WalletKeyParam();
-      walletKeyParam.password = "123456";
-      walletKeyParam.id = "4acb8008-31a9-4654-903d-65182fbc094c";
-      TcxAction walletMn = new TcxAction();
-      walletMn.method = "export_mnemonic";
-      walletMn.param = Any.pack(walletKeyParam);
-      final mn = api.callApi(HEX.encode(walletMn.writeToBuffer()));
-      final word = HEX.decode(Utf8.fromUtf8(mn.cast<Utf8>()));
-      print("助记词:\n");
-      print(KeystoreCommonExportResult.fromBuffer(word).value);
-      print("id：\n");
-      print(KeystoreCommonExportResult.fromBuffer(word).id);
+      // scanDirectory().then((value) => print(value));
+      // chain_type: "FILECOIN".to_string(),
+      // path: "m/44'/461'/0'/0/0".to_string(),
+      // network: "TESTNET".to_string(),
+      // seg_wit: "".to_string(),
+      // chain_id: "".to_string(),
+      // curve: "SECP256k1".to_string(),
+      KeystoreCommonDeriveParam keystoreCommonDeriveParam = new KeystoreCommonDeriveParam();
+      keystoreCommonDeriveParam.id = "4acb8008-31a9-4654-903d-65182fbc094c";
+      keystoreCommonDeriveParam.password = "123456";
+      KeystoreCommonDeriveParam_Derivation derivations =  KeystoreCommonDeriveParam_Derivation();
+      derivations.chainType = "FILECOIN";
+      derivations.path = "m/44'/461'/0'/0/0";
+      derivations.network = "TESTNET";
+      derivations.segWit = "";
+      derivations.chainId = "";
+      derivations.curve = "SECP256k1";
+      keystoreCommonDeriveParam.derivations.add(derivations);
+      TcxAction hdKeyStoreExport = new TcxAction();
+      hdKeyStoreExport.method = "keystore_common_derive";
+      hdKeyStoreExport.param = Any.pack(keystoreCommonDeriveParam);
+      final mn = api.callApi(HEX.encode(hdKeyStoreExport.writeToBuffer()));
+      final acc = HEX.decode(Utf8.fromUtf8(mn.cast<Utf8>()));
+      print(AccountResponse.fromBuffer(acc));
 
     });
   }

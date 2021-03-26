@@ -80,11 +80,12 @@ const KeystoreCommonDeriveParam_Derivation$json = const {
     const {'1': 'network', '3': 3, '4': 1, '5': 9, '10': 'network'},
     const {'1': 'segWit', '3': 4, '4': 1, '5': 9, '10': 'segWit'},
     const {'1': 'chainId', '3': 5, '4': 1, '5': 9, '10': 'chainId'},
+    const {'1': 'curve', '3': 6, '4': 1, '5': 9, '10': 'curve'},
   ],
 };
 
 /// Descriptor for `KeystoreCommonDeriveParam`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List keystoreCommonDeriveParamDescriptor = $convert.base64Decode('ChlLZXlzdG9yZUNvbW1vbkRlcml2ZVBhcmFtEg4KAmlkGAEgASgJUgJpZBIaCghwYXNzd29yZBgCIAEoCVIIcGFzc3dvcmQSSwoLZGVyaXZhdGlvbnMYAyADKAsyKS5hcGkuS2V5c3RvcmVDb21tb25EZXJpdmVQYXJhbS5EZXJpdmF0aW9uUgtkZXJpdmF0aW9ucxqKAQoKRGVyaXZhdGlvbhIcCgljaGFpblR5cGUYASABKAlSCWNoYWluVHlwZRISCgRwYXRoGAIgASgJUgRwYXRoEhgKB25ldHdvcmsYAyABKAlSB25ldHdvcmsSFgoGc2VnV2l0GAQgASgJUgZzZWdXaXQSGAoHY2hhaW5JZBgFIAEoCVIHY2hhaW5JZA==');
+final $typed_data.Uint8List keystoreCommonDeriveParamDescriptor = $convert.base64Decode('ChlLZXlzdG9yZUNvbW1vbkRlcml2ZVBhcmFtEg4KAmlkGAEgASgJUgJpZBIaCghwYXNzd29yZBgCIAEoCVIIcGFzc3dvcmQSSwoLZGVyaXZhdGlvbnMYAyADKAsyKS5hcGkuS2V5c3RvcmVDb21tb25EZXJpdmVQYXJhbS5EZXJpdmF0aW9uUgtkZXJpdmF0aW9ucxqgAQoKRGVyaXZhdGlvbhIcCgljaGFpblR5cGUYASABKAlSCWNoYWluVHlwZRISCgRwYXRoGAIgASgJUgRwYXRoEhgKB25ldHdvcmsYAyABKAlSB25ldHdvcmsSFgoGc2VnV2l0GAQgASgJUgZzZWdXaXQSGAoHY2hhaW5JZBgFIAEoCVIHY2hhaW5JZBIUCgVjdXJ2ZRgGIAEoCVIFY3VydmU=');
 @$core.Deprecated('Use accountResponseDescriptor instead')
 const AccountResponse$json = const {
   '1': 'AccountResponse',
@@ -126,12 +127,15 @@ const PrivateKeyStoreImportParam$json = const {
   '2': const [
     const {'1': 'privateKey', '3': 1, '4': 1, '5': 9, '10': 'privateKey'},
     const {'1': 'password', '3': 2, '4': 1, '5': 9, '10': 'password'},
-    const {'1': 'overwrite', '3': 3, '4': 1, '5': 8, '10': 'overwrite'},
+    const {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'passwordHint', '3': 4, '4': 1, '5': 9, '10': 'passwordHint'},
+    const {'1': 'overwrite', '3': 5, '4': 1, '5': 8, '10': 'overwrite'},
+    const {'1': 'encoding', '3': 6, '4': 1, '5': 9, '10': 'encoding'},
   ],
 };
 
 /// Descriptor for `PrivateKeyStoreImportParam`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List privateKeyStoreImportParamDescriptor = $convert.base64Decode('ChpQcml2YXRlS2V5U3RvcmVJbXBvcnRQYXJhbRIeCgpwcml2YXRlS2V5GAEgASgJUgpwcml2YXRlS2V5EhoKCHBhc3N3b3JkGAIgASgJUghwYXNzd29yZBIcCglvdmVyd3JpdGUYAyABKAhSCW92ZXJ3cml0ZQ==');
+final $typed_data.Uint8List privateKeyStoreImportParamDescriptor = $convert.base64Decode('ChpQcml2YXRlS2V5U3RvcmVJbXBvcnRQYXJhbRIeCgpwcml2YXRlS2V5GAEgASgJUgpwcml2YXRlS2V5EhoKCHBhc3N3b3JkGAIgASgJUghwYXNzd29yZBISCgRuYW1lGAMgASgJUgRuYW1lEiIKDHBhc3N3b3JkSGludBgEIAEoCVIMcGFzc3dvcmRIaW50EhwKCW92ZXJ3cml0ZRgFIAEoCFIJb3ZlcndyaXRlEhoKCGVuY29kaW5nGAYgASgJUghlbmNvZGluZw==');
 @$core.Deprecated('Use privateKeyStoreExportParamDescriptor instead')
 const PrivateKeyStoreExportParam$json = const {
   '1': 'PrivateKeyStoreExportParam',
@@ -151,11 +155,12 @@ const KeystoreCommonExistsParam$json = const {
   '2': const [
     const {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.api.KeyType', '10': 'type'},
     const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+    const {'1': 'encoding', '3': 3, '4': 1, '5': 9, '10': 'encoding'},
   ],
 };
 
 /// Descriptor for `KeystoreCommonExistsParam`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List keystoreCommonExistsParamDescriptor = $convert.base64Decode('ChlLZXlzdG9yZUNvbW1vbkV4aXN0c1BhcmFtEiAKBHR5cGUYASABKA4yDC5hcGkuS2V5VHlwZVIEdHlwZRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU=');
+final $typed_data.Uint8List keystoreCommonExistsParamDescriptor = $convert.base64Decode('ChlLZXlzdG9yZUNvbW1vbkV4aXN0c1BhcmFtEiAKBHR5cGUYASABKA4yDC5hcGkuS2V5VHlwZVIEdHlwZRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWUSGgoIZW5jb2RpbmcYAyABKAlSCGVuY29kaW5n');
 @$core.Deprecated('Use keystoreCommonExistsResultDescriptor instead')
 const KeystoreCommonExistsResult$json = const {
   '1': 'KeystoreCommonExistsResult',
@@ -275,3 +280,28 @@ const HdStoreExtendedPublicKeyResponse$json = const {
 
 /// Descriptor for `HdStoreExtendedPublicKeyResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List hdStoreExtendedPublicKeyResponseDescriptor = $convert.base64Decode('CiBIZFN0b3JlRXh0ZW5kZWRQdWJsaWNLZXlSZXNwb25zZRIsChFleHRlbmRlZFB1YmxpY0tleRgBIAEoCVIRZXh0ZW5kZWRQdWJsaWNLZXk=');
+@$core.Deprecated('Use publicKeyParamDescriptor instead')
+const PublicKeyParam$json = const {
+  '1': 'PublicKeyParam',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    const {'1': 'chainType', '3': 2, '4': 1, '5': 9, '10': 'chainType'},
+    const {'1': 'address', '3': 3, '4': 1, '5': 9, '10': 'address'},
+  ],
+};
+
+/// Descriptor for `PublicKeyParam`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List publicKeyParamDescriptor = $convert.base64Decode('Cg5QdWJsaWNLZXlQYXJhbRIOCgJpZBgBIAEoCVICaWQSHAoJY2hhaW5UeXBlGAIgASgJUgljaGFpblR5cGUSGAoHYWRkcmVzcxgDIAEoCVIHYWRkcmVzcw==');
+@$core.Deprecated('Use publicKeyResultDescriptor instead')
+const PublicKeyResult$json = const {
+  '1': 'PublicKeyResult',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    const {'1': 'chainType', '3': 2, '4': 1, '5': 9, '10': 'chainType'},
+    const {'1': 'address', '3': 3, '4': 1, '5': 9, '10': 'address'},
+    const {'1': 'publicKey', '3': 4, '4': 1, '5': 9, '10': 'publicKey'},
+  ],
+};
+
+/// Descriptor for `PublicKeyResult`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List publicKeyResultDescriptor = $convert.base64Decode('Cg9QdWJsaWNLZXlSZXN1bHQSDgoCaWQYASABKAlSAmlkEhwKCWNoYWluVHlwZRgCIAEoCVIJY2hhaW5UeXBlEhgKB2FkZHJlc3MYAyABKAlSB2FkZHJlc3MSHAoJcHVibGljS2V5GAQgASgJUglwdWJsaWNLZXk=');
