@@ -5,8 +5,12 @@
 
 int64_t add(int64_t a, int64_t b);
 
-char *generate_mnemonic(void);
+/**
+ * dispatch protobuf rpc call
+ */
+const char *call_tcx_api(const char *hex_str);
 
-int64_t get_num(void);
-
-char *privateKey_address_from_mnemonic(const char *mnemonic, const char *passwd);
+/**
+ *生成助记词
+ */
+char *get_mnemonic(void);

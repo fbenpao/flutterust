@@ -31,35 +31,24 @@ typedef _add_Dart = int Function(
   int b,
 );
 
-/// C function `generate_mnemonic`.
-Pointer<ffi.Utf8> generate_mnemonic() {
-  return _generate_mnemonic();
-}
-final _generate_mnemonic_Dart _generate_mnemonic = _dl.lookupFunction<_generate_mnemonic_C, _generate_mnemonic_Dart>('generate_mnemonic');
-typedef _generate_mnemonic_C = Pointer<ffi.Utf8> Function();
-typedef _generate_mnemonic_Dart = Pointer<ffi.Utf8> Function();
-
-/// C function `get_num`.
-int get_num() {
-  return _get_num();
-}
-final _get_num_Dart _get_num = _dl.lookupFunction<_get_num_C, _get_num_Dart>('get_num');
-typedef _get_num_C = Int64 Function();
-typedef _get_num_Dart = int Function();
-
-/// C function `privateKey_address_from_mnemonic`.
-Pointer<ffi.Utf8> privateKey_address_from_mnemonic(
-  Pointer<ffi.Utf8> mnemonic,
-  Pointer<ffi.Utf8> passwd,
+/// <p class="para-brief"> dispatch protobuf rpc call</p>
+Pointer<ffi.Utf8> call_tcx_api(
+  Pointer<ffi.Utf8> hex_str,
 ) {
-  return _privateKey_address_from_mnemonic(mnemonic, passwd);
+  return _call_tcx_api(hex_str);
 }
-final _privateKey_address_from_mnemonic_Dart _privateKey_address_from_mnemonic = _dl.lookupFunction<_privateKey_address_from_mnemonic_C, _privateKey_address_from_mnemonic_Dart>('privateKey_address_from_mnemonic');
-typedef _privateKey_address_from_mnemonic_C = Pointer<ffi.Utf8> Function(
-  Pointer<ffi.Utf8> mnemonic,
-  Pointer<ffi.Utf8> passwd,
+final _call_tcx_api_Dart _call_tcx_api = _dl.lookupFunction<_call_tcx_api_C, _call_tcx_api_Dart>('call_tcx_api');
+typedef _call_tcx_api_C = Pointer<ffi.Utf8> Function(
+  Pointer<ffi.Utf8> hex_str,
 );
-typedef _privateKey_address_from_mnemonic_Dart = Pointer<ffi.Utf8> Function(
-  Pointer<ffi.Utf8> mnemonic,
-  Pointer<ffi.Utf8> passwd,
+typedef _call_tcx_api_Dart = Pointer<ffi.Utf8> Function(
+  Pointer<ffi.Utf8> hex_str,
 );
+
+/// <p class="para-brief">生成助记词</p>
+Pointer<ffi.Utf8> get_mnemonic() {
+  return _get_mnemonic();
+}
+final _get_mnemonic_Dart _get_mnemonic = _dl.lookupFunction<_get_mnemonic_C, _get_mnemonic_Dart>('get_mnemonic');
+typedef _get_mnemonic_C = Pointer<ffi.Utf8> Function();
+typedef _get_mnemonic_Dart = Pointer<ffi.Utf8> Function();

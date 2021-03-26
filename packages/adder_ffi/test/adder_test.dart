@@ -2,12 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adder/adder.dart';
 
 void main() {
-  Adder adder;
+  walletApi adder;
   setUp(() {
-    adder = Adder();
+    adder = walletApi();
   });
 
-  test('it works', () async {
-    expect(adder.add(2, 2), 4);
-  });
 }

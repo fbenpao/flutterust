@@ -2,6 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:adder/adder.dart';
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
+import 'package:flutterust/protobuf/any.pb.dart';
+import "package:hex/hex.dart";
+import 'package:permission_handler/permission_handler.dart';
+import 'package:protobuf/protobuf.dart';
+import './protobuf/api.pb.dart';
+import './protobuf/params.pb.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
+Future<String> createDirectory(String url) async {
+  requestPermission();
+  final filepath = await getApplicationDocumentsDirectory();
+  var file = Directory(filepath.path+"/"+url);
+  try {
+    bool exists = await file.exists();
+    if (!exists) {
+      await file.create();
+      print("创建成功");
+    } else {
+      print("已存在");
+    }
+  } catch (e) {
+    print(e);
+  }
+  return file.path.toString();
+}
+
+Future<String> scanDirectory() async {
+  requestPermission();
+  final filepath = await getApplicationDocumentsDirectory();
+  var file = Directory(filepath.path+"/"+"fanch");
+  var path = file.listSync().first.path.toString();
+  return path;
+}
+
+
+Future requestPermission() async {
+// You can request multiple permissions at once.
+Map<Permission, PermissionStatus> statuses = await [
+Permission.storage,Permission.contacts
+].request();
+}
 
 void main() => runApp(MyApp());
 
@@ -27,12 +69,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _counter = "";
-  Adder adder;
-
+  walletApi api;
+  //创建助记词参数
+  HdStoreCreateParam hdStoreCreateParam = new HdStoreCreateParam();
+  TcxAction tcxAction = new TcxAction();
+  InitTokenCoreXParam initTokenCoreXParam = new InitTokenCoreXParam();
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    adder = Adder();
+    api = walletApi();
+    createDirectory("fanch").then((value) => {
+      initTokenCoreXParam.fileDir = value,
+      initTokenCoreXParam.xpubCommonKey = "B888D25EC8C12BD5043777B1AC49F872",
+      initTokenCoreXParam.xpubCommonIv = "9C0C30889CBCC5E01AB5B2BB88715799",
+      initTokenCoreXParam.isDebug = true,
+      tcxAction.method="init_token_core_x",
+      tcxAction.param = Any.pack(initTokenCoreXParam),
+      api.callApi(HEX.encode(tcxAction.writeToBuffer())),
+    });
+
   }
 
   @override
@@ -66,17 +121,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // _counter = adder.add(_counter, 1);
-      print(adder.get());
-      final ptrResult = adder.word();
+      scanDirectory().then((value) => print(value));
+      WalletKeyParam walletKeyParam = new WalletKeyParam();
+      walletKeyParam.password = "123456";
+      walletKeyParam.id = "4acb8008-31a9-4654-903d-65182fbc094c";
+      TcxAction walletMn = new TcxAction();
+      walletMn.method = "export_mnemonic";
+      walletMn.param = Any.pack(walletKeyParam);
+      final mn = api.callApi(HEX.encode(walletMn.writeToBuffer()));
+      final word = HEX.decode(Utf8.fromUtf8(mn.cast<Utf8>()));
+      print("助记词:\n");
+      print(KeystoreCommonExportResult.fromBuffer(word).value);
+      print("id：\n");
+      print(KeystoreCommonExportResult.fromBuffer(word).id);
 
-      // Cast the result pointer to a Dart string
-      final result = Utf8.fromUtf8(ptrResult.cast<Utf8>());
-      _counter = result;
-      print(result);
-
-      final address = adder.private_address("equip will roof matter pink blind book anxiety banner elbow sun young", "123456");
-      print(Utf8.fromUtf8(address.cast<Utf8>()));
     });
   }
 
