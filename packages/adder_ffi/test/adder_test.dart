@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adder/adder.dart';
 
 void main() {
-  walletApi adder;
+  WalletApi adder;
   setUp(() {
-    adder = walletApi();
+    adder = WalletApi();
   });
 
 }

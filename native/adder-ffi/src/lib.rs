@@ -3,7 +3,7 @@ use prost::Message;
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
 use tcx::api::{Response, TcxAction};
-use tcx::error_handling::{landingpad, LAST_BACKTRACE, LAST_ERROR};
+use tcx::error_handling::landingpad;
 use tcx::handler::{
     encode_message, export_mnemonic, export_private_key, export_substrate_keystore,
     get_derived_key, get_public_key, hd_store_create, hd_store_export, hd_store_import,
@@ -33,6 +33,7 @@ fn pack_err(string: String) -> String {
     let res = Response {
         is_success: false,
         error: string,
+        value: None,
     };
     hex::encode(encode_message(res).unwrap())
 }
@@ -63,14 +64,8 @@ pub unsafe extern "C" fn call_tcx_api(hex_str: *const c_char) -> *const c_char {
         Err(e) => return e,
     };
     let reply: Vec<u8> = match action.method.to_lowercase().as_str() {
-        "init_token_core_x" => landingpad(|| {
-            init_token_core_x(&action.param.unwrap().value).unwrap();
-            Ok(vec![])
-        }),
-        "scan_keystores" => landingpad(|| {
-            scan_keystores().unwrap();
-            Ok(vec![])
-        }),
+        "init_token_core_x" => landingpad(|| init_token_core_x(&action.param.unwrap().value)),
+        "scan_keystores" => landingpad(|| scan_keystores()),
         "hd_store_create" => landingpad(|| hd_store_create(&action.param.unwrap().value)),
         "hd_store_import" => landingpad(|| hd_store_import(&action.param.unwrap().value)),
         "hd_store_export" => landingpad(|| hd_store_export(&action.param.unwrap().value)),
