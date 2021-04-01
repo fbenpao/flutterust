@@ -28,7 +28,7 @@ class WalletApi {
 
   Response callApi(String actionFunc){
   final fn = actionFunc.toNativeUtf8().cast<Utf8>();
-  final result =  ffi.call_tcx_api(fn);
+  final result =  ffi.call_tcx_api_abm(fn);
   return Response.fromBuffer( HEX.decode(result.toDartString()));
 }
 

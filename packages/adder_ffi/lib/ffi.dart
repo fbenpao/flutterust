@@ -32,16 +32,16 @@ typedef _add_Dart = int Function(
 );
 
 /// <p class="para-brief"> dispatch protobuf rpc call</p>
-Pointer<ffi.Utf8> call_tcx_api(
+Pointer<ffi.Utf8> call_tcx_api_abm(
   Pointer<ffi.Utf8> hex_str,
 ) {
-  return _call_tcx_api(hex_str);
+  return _call_tcx_api_abm(hex_str);
 }
-final _call_tcx_api_Dart _call_tcx_api = _dl.lookupFunction<_call_tcx_api_C, _call_tcx_api_Dart>('call_tcx_api');
-typedef _call_tcx_api_C = Pointer<ffi.Utf8> Function(
+final _call_tcx_api_abm_Dart _call_tcx_api_abm = _dl.lookupFunction<_call_tcx_api_abm_C, _call_tcx_api_abm_Dart>('call_tcx_api_abm');
+typedef _call_tcx_api_abm_C = Pointer<ffi.Utf8> Function(
   Pointer<ffi.Utf8> hex_str,
 );
-typedef _call_tcx_api_Dart = Pointer<ffi.Utf8> Function(
+typedef _call_tcx_api_abm_Dart = Pointer<ffi.Utf8> Function(
   Pointer<ffi.Utf8> hex_str,
 );
 

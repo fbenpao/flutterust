@@ -43,12 +43,12 @@ dependencies = [
 [tasks.build]
 description = "Runs the rust compiler."
 category = "Build"
-dependencies = ["android"]
+dependencies = ["reset","android"]
 
 [tasks.build.mac]
 description = "Runs the rust compiler."
 category = "Build"
-dependencies = ["android", "ios"]
+dependencies = ["reset","android", "ios"]
 
 [tasks.ios]
 description = "build iOS targets"
@@ -286,4 +286,19 @@ script = [
     result = writefile ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/native/${CARGO_MAKE_CRATE_CURRENT_WORKSPACE_MEMBER}/Cargo.toml ${val}
     assert ${result}
     """,
+]
+
+[tasks.reset]
+private = true
+script_runner = "@duckscript"
+script = [
+    """
+     toml = readfile ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/native/${CARGO_MAKE_CRATE_CURRENT_WORKSPACE_MEMBER}/Cargo.toml
+     val = replace ${toml} "staticlib" "rlib"
+     result = writefile ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/native/${CARGO_MAKE_CRATE_CURRENT_WORKSPACE_MEMBER}/Cargo.toml ${val}
+     val = replace ${toml} "cdylib" "rlib"
+     result = writefile ${CARGO_MAKE_WORKSPACE_WORKING_DIRECTORY}/native/${CARGO_MAKE_CRATE_CURRENT_WORKSPACE_MEMBER}/Cargo.toml ${val}
+     echo ${crate_type}
+     assert ${result}
+     """,
 ]

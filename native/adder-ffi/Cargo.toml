@@ -6,7 +6,7 @@ edition = "2018"
 
 [lib]
 name = "adder_ffi"
-crate-type = ["staticlib"]
+crate-type = ["rlib"]
 
 [dependencies]
 tcx-chain= {git="https://github.com/boolnetwork/token-core.git",version="0.1.0",branch="dev"}

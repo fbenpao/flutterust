@@ -58,7 +58,7 @@ unsafe fn handle(hex_str: *const c_char) -> Result<TcxAction, *const c_char> {
 /// dispatch protobuf rpc call
 #[allow(deprecated)]
 #[no_mangle]
-pub unsafe extern "C" fn call_tcx_api(hex_str: *const c_char) -> *const c_char {
+pub unsafe extern "C" fn call_tcx_api_abm(hex_str: *const c_char) -> *const c_char {
     let action = match handle(hex_str) {
         Ok(action) => action,
         Err(e) => return e,

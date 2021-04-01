@@ -4,7 +4,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:flutterust/protobuf/any.pb.dart';
 import "package:hex/hex.dart";
-import 'package:permission_handler/permission_handler.dart';
 import 'package:protobuf/protobuf.dart';
 import './protobuf/api.pb.dart';
 import './protobuf/params.pb.dart';
@@ -12,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 Future<String> createDirectory(String url) async {
-  requestPermission();
   final filepath = await getApplicationDocumentsDirectory();
   var file = Directory(filepath.path+"/"+url);
   try {
@@ -41,21 +39,11 @@ Future<String> readContent(String path) async {
 }
 
 Future<String> scanDirectory() async {
-  requestPermission();
   final filepath = await getApplicationDocumentsDirectory();
   var file = Directory(filepath.path+"/"+"fanch");
-  print(file.listSync());
   var path = file.listSync().first.path.toString();
   print(path);
   return path;
-}
-
-
-Future requestPermission() async {
-// You can request multiple permissions at once.
-Map<Permission, PermissionStatus> statuses = await [
-Permission.storage,Permission.contacts
-].request();
 }
 
 void main() => runApp(MyApp());
